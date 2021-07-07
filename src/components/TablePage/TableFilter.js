@@ -13,8 +13,9 @@ class TableFilter extends React.Component {
         this.allFilterTypes = ["beverageType", "brand", "volume" ]
         this.allFilterOptions = {}
         this.allFilterTypes.forEach((type => {
-            let myType = type.replace(" ", "")
-            this.allFilterOptions[myType] = this.getAllOptionsForKey(myType)
+            // let myType = type.replace(" ", "")
+            // this.allFilterOptions[myType] = this.getAllOptionsForKey(myType)
+            this.allFilterOptions[type] = this.getAllOptionsForKey(type)
         }))
 
         this.currFilterChoices = this.allFilterOptions[this.allFilterTypes[0]]
@@ -28,20 +29,21 @@ class TableFilter extends React.Component {
         this.filterState = {value: "all"}
         this.setListOfDrinks(this.filterByType())
 
-        let newFilterType = this.filterTypeState.value.replace(" ", "")
+        let newFilterType = this.filterTypeState.value
         this.currFilterChoices = this.allFilterOptions[newFilterType]
         console.log(this.currFilterChoices)
     }
   
     handleChangeFilter(event) {
         this.filterState = {value: event.target.value}
-        let filteredList = this.filterByType();
-        this.setListOfDrinks(filteredList);
+        // let filteredList = this.filterByType();
+        // this.setListOfDrinks(filteredList);
+        this.setListOfDrinks(this.filterByType());
     }
 
     filterByType(){
         let filterStateValue = this.filterState.value
-        let filterTypeStateValue = this.filterTypeState.value.replace(" ", "")
+        let filterTypeStateValue = this.filterTypeState.value
 
         if(filterStateValue === "all"){
             return this.listOfDrinks
