@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 class TableFilter extends React.Component {
@@ -10,34 +11,30 @@ class TableFilter extends React.Component {
         this.handleChangeFilterType = this.handleChangeFilterType.bind(this)
         this.handleChangeFilter = this.handleChangeFilter.bind(this)
 
-        this.allFilterTypes = ["beverageType", "brand", "volume" ]
+        this.allFilterTypes = ["beverageType", "brand", "volume", "alcoholContent" ]
         this.allFilterOptions = {}
         this.allFilterTypes.forEach((type => {
-            // let myType = type.replace(" ", "")
-            // this.allFilterOptions[myType] = this.getAllOptionsForKey(myType)
             this.allFilterOptions[type] = this.getAllOptionsForKey(type)
         }))
 
-        this.currFilterChoices = this.allFilterOptions[this.allFilterTypes[0]]
-
+        this.state = {
+            currFilterChoices: this.allFilterOptions[this.allFilterTypes[0]]
+        }
         this.filterTypeState = {value: this.allFilterTypes[0]}
-        this.filterState = {value: this.currFilterChoices[0]}
+        this.filterState = {value: this.state.currFilterChoices[0]}
     }
 
     handleChangeFilterType(event) {
         this.filterTypeState = {value: event.target.value}
         this.filterState = {value: "all"}
+        this.setState({
+            currFilterChoices: this.allFilterOptions[event.target.value]
+        })
         this.setListOfDrinks(this.filterByType())
-
-        let newFilterType = this.filterTypeState.value
-        this.currFilterChoices = this.allFilterOptions[newFilterType]
-        console.log(this.currFilterChoices)
     }
   
     handleChangeFilter(event) {
         this.filterState = {value: event.target.value}
-        // let filteredList = this.filterByType();
-        // this.setListOfDrinks(filteredList);
         this.setListOfDrinks(this.filterByType());
     }
 
@@ -55,7 +52,7 @@ class TableFilter extends React.Component {
     }
 
     getAllOptionsForKey(key){
-        let options = ["All"]
+        let options = ["all"]
         this.listOfDrinks.forEach((drink) => {
             if(!options.includes(drink[key])){
                 options.push(drink[key])
@@ -82,7 +79,7 @@ class TableFilter extends React.Component {
                 <div>
                     <label htmlFor="filter">Filter</label>
                     <select name="filter" id="myFilter" onChange={this.handleChangeFilter}>
-                        {this.currFilterChoices.map((choice) => {
+                        {this.state.currFilterChoices.map((choice) => {
                             return (
                                 <option key={choice} value={choice}> 
                                     {choice} 
