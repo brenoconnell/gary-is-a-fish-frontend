@@ -4,16 +4,49 @@ import Table from './Table';
 import DrinkClass from './DrinkClass';
 import allFakeDrinks from './fakeDrinksList.json';
 import TableFilter from './TableFilter';
+import TableSorter from './TableSorter';
 
-function makeRandID(length) {
-    let result = '';
-    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-   }
-   return result;
-}
+// function makeRandID(length) {
+//     let result = '';
+//     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+//     let charactersLength = characters.length;
+//     for (let i = 0; i < length; i++) {
+//       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+//    }
+//    return result;
+// }
+
+// function makeRandNum(min, max, decimalPlaces) {  
+//     let rand = Math.random()*(max-min) + min;
+//     let power = Math.pow(10, decimalPlaces);
+//     return Math.floor(rand*power) / power;
+// }
+
+// function createFakeDrinkList(numFakeDrinks){
+//     let fakeDrinkList = []
+//     for(let i = 0; i < numFakeDrinks; i++){
+//         let id = makeRandID(10);
+//         let brand = makeRandID(5);
+//         let brandBeverageName = makeRandID(10);
+//         let beverageType = "Beer";
+//         let price = makeRandNum(0, 50, 2);
+//         let currency = "EUR";
+//         let volume = makeRandNum(200, 2000, 0);
+//         let multipack = false;
+//         let numInMultipack = -1;
+//         let alcoholContent = makeRandNum(2.5, 70, 1);
+//         let shop = makeRandID(7);
+//         let shopLocation = makeRandID(7);
+//         let shopCity = "Dublin";
+//         let shopCountry = "Ireland";
+//         let itemImageRef = "";
+//         const newDrink = new DrinkClass(id, brand, brandBeverageName, beverageType, 
+//             price, currency, volume, multipack, numInMultipack, alcoholContent, shop,
+//             shopLocation, shopCity, shopCountry, itemImageRef)
+//         fakeDrinkList.push(newDrink);
+//     }
+//     return fakeDrinkList;
+// }
 
 function readFakeDrinksListFromJSON(){
     let fakeDrinkList = []
@@ -42,38 +75,6 @@ function readFakeDrinksListFromJSON(){
     return fakeDrinkList
 }
 
-function makeRandNum(min, max, decimalPlaces) {  
-    let rand = Math.random()*(max-min) + min;
-    let power = Math.pow(10, decimalPlaces);
-    return Math.floor(rand*power) / power;
-}
-
-function createFakeDrinkList(numFakeDrinks){
-    let fakeDrinkList = []
-    for(let i = 0; i < numFakeDrinks; i++){
-        let id = makeRandID(10);
-        let brand = makeRandID(5);
-        let brandBeverageName = makeRandID(10);
-        let beverageType = "Beer";
-        let price = makeRandNum(0, 50, 2);
-        let currency = "EUR";
-        let volume = makeRandNum(200, 2000, 0);
-        let multipack = false;
-        let numInMultipack = -1;
-        let alcoholContent = makeRandNum(2.5, 70, 1);
-        let shop = makeRandID(7);
-        let shopLocation = makeRandID(7);
-        let shopCity = "Dublin";
-        let shopCountry = "Ireland";
-        let itemImageRef = "";
-        const newDrink = new DrinkClass(id, brand, brandBeverageName, beverageType, 
-            price, currency, volume, multipack, numInMultipack, alcoholContent, shop,
-            shopLocation, shopCity, shopCountry, itemImageRef)
-        fakeDrinkList.push(newDrink);
-    }
-    return fakeDrinkList;
-}
-
 function TablePage() {
 
     const initialList = readFakeDrinksListFromJSON()
@@ -85,9 +86,9 @@ function TablePage() {
                 <TableFilter listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></TableFilter>
             </div>
             <div>
-                Sort here
+                <TableSorter listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></TableSorter>
             </div>
-            <Table listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></Table>
+            <Table listOfDrinks={listOfDrinks}></Table>
         </div>
     );
 }

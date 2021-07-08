@@ -11,7 +11,7 @@ class TableFilter extends React.Component {
         this.handleChangeFilterType = this.handleChangeFilterType.bind(this)
         this.handleChangeFilter = this.handleChangeFilter.bind(this)
 
-        this.allFilterTypes = ["beverageType", "brand", "volume", "alcoholContent" ]
+        this.allFilterTypes = ["beverageType", "brand", "volume", "alcoholContent"]
         this.allFilterOptions = {}
         this.allFilterTypes.forEach((type => {
             this.allFilterOptions[type] = this.getAllOptionsForKey(type)
@@ -35,7 +35,7 @@ class TableFilter extends React.Component {
   
     handleChangeFilter(event) {
         this.filterState = {value: event.target.value}
-        this.setListOfDrinks(this.filterByType());
+        this.setListOfDrinks(this.filterByType())
     }
 
     filterByType(){
@@ -46,19 +46,22 @@ class TableFilter extends React.Component {
             return this.listOfDrinks
         }
         let newList = this.listOfDrinks.filter((drink) => {
-            return filterStateValue == drink[filterTypeStateValue]
+            return filterStateValue === drink[filterTypeStateValue]
         })
         return newList
     }
 
     getAllOptionsForKey(key){
-        let options = ["all"]
+        let options = []
         this.listOfDrinks.forEach((drink) => {
             if(!options.includes(drink[key])){
                 options.push(drink[key])
             }
         })
-        return options;
+        options.sort((a,b) => a > b ? -1 : 1)
+        options.push("all")
+        options.reverse()
+        return options
     }
   
     render() {

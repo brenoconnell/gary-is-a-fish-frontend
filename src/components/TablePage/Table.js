@@ -5,7 +5,6 @@ import DrinkItem from './DrinkItem';
 function Table(props) {
 
     const listOfDrinks = props.listOfDrinks
-    const setListOfDrinks = props.setListOfDrinks
 
     return (
         <div className="Table">
