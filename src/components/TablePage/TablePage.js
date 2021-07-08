@@ -4,7 +4,6 @@ import Table from './Table';
 import DrinkClass from './DrinkClass';
 import allFakeDrinks from './fakeDrinksList.json';
 import TableFilter from './TableFilter';
-import TableSorter from './TableSorter';
 
 // function makeRandID(length) {
 //     let result = '';
@@ -85,10 +84,7 @@ function TablePage() {
             <div>
                 <TableFilter listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></TableFilter>
             </div>
-            <div>
-                <TableSorter listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></TableSorter>
-            </div>
-            <Table listOfDrinks={listOfDrinks}></Table>
+            <Table listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></Table>
         </div>
     );
 }

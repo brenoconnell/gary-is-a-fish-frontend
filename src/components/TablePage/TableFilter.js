@@ -11,7 +11,7 @@ class TableFilter extends React.Component {
         this.handleChangeFilterType = this.handleChangeFilterType.bind(this)
         this.handleChangeFilter = this.handleChangeFilter.bind(this)
 
-        this.allFilterTypes = ["beverageType", "brand", "volume", "alcoholContent"]
+        this.allFilterTypes = ["beverageType", "brand", "volume"]
         this.allFilterOptions = {}
         this.allFilterTypes.forEach((type => {
             this.allFilterOptions[type] = this.getAllOptionsForKey(type)
@@ -68,8 +68,7 @@ class TableFilter extends React.Component {
         return (
             <div>
                 <div>
-                    <label htmlFor="typeFilter"> What do you want to filter?</label>
-                    <select name="typeFilter" id="myTypeFilter" onChange={this.handleChangeFilterType}>
+                    <select id="myTypeFilter" onChange={this.handleChangeFilterType}>
                         {this.allFilterTypes.map((type) => {
                             return (
                                 <option key={type} value={type}> 
@@ -80,8 +79,7 @@ class TableFilter extends React.Component {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="filter">Filter</label>
-                    <select name="filter" id="myFilter" onChange={this.handleChangeFilter}>
+                    <select id="myFilter" onChange={this.handleChangeFilter}>
                         {this.state.currFilterChoices.map((choice) => {
                             return (
                                 <option key={choice} value={choice}> 

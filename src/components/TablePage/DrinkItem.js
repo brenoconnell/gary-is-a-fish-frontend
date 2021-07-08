@@ -44,12 +44,13 @@ function DrinkItem(props) {
     return (
         <div className="DrinkItem">
             <div className="drinkCategory">{myDrink.brand}</div>
-            <div className="drinkCategory">{myDrink.brandBeverageName}</div>
+            <div className="drinkCategory">{myDrink.garyScore.toFixed(2)}</div>
             <div className="drinkCategory">{currencySymbols[myDrink.currency]} {myDrink.price}</div>
+            <div className="drinkCategory">{myDrink.beverageType}</div>
             <MultipackInfo multipack={myDrink.multipack} numInMultipack={myDrink.numInMultipack}></MultipackInfo>
             <div className="drinkCategory">{myDrink.volume}</div>
             <div className="drinkCategory">{myDrink.alcoholContent}</div>
-            <div className="drinkCategory">{myDrink.garyScore.toFixed(2)}</div>
+            <div className="drinkCategory">{myDrink.shop}, {myDrink.shopLocation}</div>
             <CountryFlag countryName={myDrink.shopCountry}></CountryFlag>
         </div>
     );
