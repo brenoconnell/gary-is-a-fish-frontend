@@ -2,6 +2,7 @@ import React from 'react';
 import './HomePage.css';
 import Tabs from "../Tabs/Tabs"; 
 import TablePage from '../TablePage/TablePage';
+import NewDrinkPage from '../NewDrinkPage/NewDrinkPage';
 
 function Welcome(props) {
   return <h2>Hello, {props.name}</h2>;
@@ -18,7 +19,7 @@ function HomePage() {
                     <TablePage></TablePage> 
                 </div>
                 <div label="Submit New Drink">
-                    I'm gonna put a big form in here
+                    <NewDrinkPage></NewDrinkPage>
                 </div>
             </Tabs> 
         </div>

@@ -10,7 +10,7 @@ class DrinkClass {
         this.volume = parseInt(drink.volume);
         this.multipack = drink.multipack;
         this.numInMultipack = drink.numInMultipack;
-        this.alcoholContent = drink.alcoholContent;
+        this.alcoholContent = parseInt(drink.alcoholContent);
         this.shop = drink.shop;
         this.shopLocation = drink.shopLocation;
         this.shopCity = drink.shopCity;
