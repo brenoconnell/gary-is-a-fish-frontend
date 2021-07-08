@@ -50,25 +50,7 @@ import TableFilter from './TableFilter';
 function readFakeDrinksListFromJSON(){
     let fakeDrinkList = []
     allFakeDrinks.forEach((drink) => {
-        let id = drink.id;
-        let brand = drink.brand;
-        let brandBeverageName = drink.brandBeverageName;
-        let beverageType = drink.beverageType;
-        let price = drink.price;
-        let currency = drink.currency;
-        let volume = drink.volume;
-        let multipack = drink.multipack;
-        let numInMultipack = drink.numInMultipack;
-        let alcoholContent = drink.alcoholContent;
-        let shop = drink.shop;
-        let shopLocation = drink.shopLocation;
-        let shopCity = drink.shopCity;
-        let shopCountry = drink.shopCountry;
-        let itemImageRef = drink.itemImageRef;
-        let inputTime = new Date(drink.inputTime);
-        const newDrink = new DrinkClass(id, brand, brandBeverageName, beverageType, 
-                price, currency, volume, multipack, numInMultipack, alcoholContent, shop,
-                shopLocation, shopCity, shopCountry, itemImageRef, inputTime)
+        const newDrink = new DrinkClass(drink)
         fakeDrinkList.push(newDrink);
     });
     return fakeDrinkList

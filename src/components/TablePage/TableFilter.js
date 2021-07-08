@@ -34,19 +34,21 @@ class TableFilter extends React.Component {
     }
   
     handleChangeFilter(event) {
-        this.filterState = {value: event.target.value}
+        if(this.filterTypeState.value === "volume"){
+            this.filterState = {value: parseInt(event.target.value)}
+        }
+        else{
+            this.filterState = {value: event.target.value}
+        }
         this.setListOfDrinks(this.filterByType())
     }
 
     filterByType(){
-        let filterStateValue = this.filterState.value
-        let filterTypeStateValue = this.filterTypeState.value
-
-        if(filterStateValue === "all"){
+        if(this.filterState.value === "all"){
             return this.listOfDrinks
         }
         let newList = this.listOfDrinks.filter((drink) => {
-            return filterStateValue === drink[filterTypeStateValue]
+            return this.filterState.value == drink[this.filterTypeState.value]
         })
         return newList
     }
