@@ -30,9 +30,6 @@ function sortByType(sortType, listOfDrinks, setListOfDrinks, reverseSorted, setR
 
 function Table(props) {
 
-    const listOfDrinks = props.listOfDrinks
-    const setListOfDrinks = props.setListOfDrinks
-
     const initReverseSorted = {
         brand: false,
         garyScore: true,
@@ -52,36 +49,36 @@ function Table(props) {
             <ul className="myList">
                 <li key="header">
                     <div className="tableHeader">
-                        <div onClick={() => sortByType("brand", listOfDrinks, setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("brand", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
                             className="drinkCategory"><b>Brand</b>
                         </div>
-                        <div onClick={() => sortByType("garyScore", listOfDrinks, setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("garyScore", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
                             className="drinkCategory"><b>Gary Score (ml alc./€)</b>
                         </div>
-                        <div onClick={() => sortByType("price", listOfDrinks, setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("price", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
                             className="drinkCategory"><b>Price</b>
                         </div>
-                        <div onClick={() => sortByType("beverageType", listOfDrinks, setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("beverageType", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
                             className="drinkCategory"><b>Beverage Type</b>
                         </div>
-                        <div onClick={() => sortByType("numInMultipack", listOfDrinks, setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("numInMultipack", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
                             className="drinkCategory"><b># in pack</b>
                         </div>
-                        <div onClick={() => sortByType("volume", listOfDrinks, setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("volume", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
                             className="drinkCategory"><b>Volume (ml)</b>
                         </div>
-                        <div onClick={() => sortByType("alcoholContent", listOfDrinks, setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("alcoholContent", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
                             className="drinkCategory"><b>Alcohol % </b>
                         </div>
-                        <div onClick={() => sortByType("shop", listOfDrinks, setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("shop", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
                             className="drinkCategory"><b>Shop</b>
                         </div>
-                        <div onClick={() => sortByType("shopCountry", listOfDrinks, setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("shopCountry", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
                             className="drinkCategory"><b>Country</b>
                         </div>
                     </div>
                 </li>
-                {listOfDrinks.map((drink) => {
+                {props.listOfDrinks.map((drink) => {
                     return (
                         <li key={drink.id}> 
                             <DrinkItem myDrink={drink}></DrinkItem> 

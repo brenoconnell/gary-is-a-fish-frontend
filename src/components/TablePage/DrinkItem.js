@@ -31,11 +31,16 @@ function countryNameToCode(countryName){
     var countries = require("i18n-iso-countries");
     countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
     let code = countries.getAlpha2Code(countryName, "en");
+    if(code === undefined) return "err"
     return code.toLowerCase();
 }
 
 function CountryFlag(props){
-    let src = "https://www.countryflags.io/" + countryNameToCode(props.countryName) +"/flat/48.png";
+    let countryCode = countryNameToCode(props.countryName)
+    if(countryCode === "err"){
+        return <div className="drinkCategory empty-country-flag">{props.countryName}</div>
+    }
+    let src = "https://www.countryflags.io/" + countryCode + "/flat/48.png"
     return <div className="drinkCategory"><img src={src} alt={props.countryName}></img></div>
 }
 

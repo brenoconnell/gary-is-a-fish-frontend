@@ -21,3 +21,10 @@
     margin: 0;
     cursor: pointer;
 }
+
+.filter-select{
+    width: 30%;
+    padding: 8px 10px;
+    border-width: 1px;
+    border-radius: 4px;
+}
