@@ -1,0 +1,13 @@
+{
+    "bevTypes": [
+        "Beer",
+        "Cider",
+        "Spirit",
+        "Vodka",
+        "Rum",
+        "Gin",
+        "Liqueur",
+        "Pre-mixed",
+        "Wine"
+    ]
+}
