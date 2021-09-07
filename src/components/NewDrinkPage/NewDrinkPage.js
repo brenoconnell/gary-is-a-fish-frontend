@@ -13,7 +13,7 @@ class NewDrinkPage extends React.Component {
 
         this.allBevTypes = [...allBevTypes.bevTypes].sort((a,b) => a > b ? 1 : -1)
 
-        let newDate = new Date()
+        
         this.state = {
             brand: "",
             brandBeverageName: "",
@@ -26,8 +26,8 @@ class NewDrinkPage extends React.Component {
             shop: "",
             shopLocation: "",
             shopCountry: "",
-            inputTime: newDate.toString(),
-            id: this.makeRandID(10),
+            inputTime: "",
+            id: "",
             currency: "EUR"
         }
     }
@@ -57,7 +57,10 @@ class NewDrinkPage extends React.Component {
 
     onSubmitForm(event){
         event.preventDefault()
+        let newDate = new Date()
         let newDrink = new DrinkClass(this.state)
+        newDrink.id = this.makeRandID(10)
+        newDrink.inputTime = newDate.toString()
         if(newDrink.isValidDrink()){
             this.props.listOfDrinks.push(newDrink)
             this.props.setListOfDrinks(this.props.listOfDrinks)
@@ -116,18 +119,18 @@ class NewDrinkPage extends React.Component {
                 </div>
                 <div className="form-row">
                     <div className="form-field">
-                        <label htmlFor="shopInput"><b>Shop</b></label>
+                        <label htmlFor="shopInput"><b>Shop Namw</b></label>
                         <input placeholder="Tesco, Circle K..." name="shopInput" type='text' onChange={(event) => this.myChangeHandler(event, "shop")}/>
                     </div>
                     <div className="form-field">
-                        <label htmlFor="shopLocationInput"><b>Shop</b></label>
+                        <label htmlFor="shopLocationInput"><b>Shop Area</b></label>
                         <input placeholder="Booterstown..." name="shopLocationInput" type='text' onChange={(event) => this.myChangeHandler(event, "shopLocation")}/>
                     </div>
                     
                 </div>
                 <div className="form-row">
                     <div className="form-field">
-                        <label htmlFor="shopCountryInput"><b>Shop</b></label>
+                        <label htmlFor="shopCountryInput"><b>Shop Country</b></label>
                         <input placeholder="Ireland..." name="shopCountryInput" type='text' onChange={(event) => this.myChangeHandler(event, "shopCountry")}/>
                     </div>
                 </div>
