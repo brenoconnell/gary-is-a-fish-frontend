@@ -1,6 +1,7 @@
 import React from 'react';
 import './NewDrinkPage.css';
 import DrinkClass from '../TablePage/DrinkClass';
+import './../../App.css';
 
 import allBevTypes from '../HomePage/AllBeverageTypes.json';
 
