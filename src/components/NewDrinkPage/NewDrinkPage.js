@@ -156,7 +156,7 @@ class NewDrinkPage extends React.Component {
                     </div>
                 </div>
                 <div className="form-buttons">
-                    <button className="green-submit-button" type="submit">SUBMIT</button>
+                    <button className="green-submit-button" type="submit">Submit</button>
                 </div>
             </form>
         );

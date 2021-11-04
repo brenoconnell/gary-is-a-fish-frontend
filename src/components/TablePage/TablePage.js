@@ -2,7 +2,6 @@ import React from 'react';
 import './TablePage.css';
 import Table from './Table';
 import './../../App.css';
-// import TableFilter from './TableFilter';
 
 function handleChangeSearchBar(event, setSearchValue) {
     setSearchValue(event.target.value)
@@ -55,7 +54,7 @@ function SearchBar(props){
     return(
         <form onSubmit={(e) => handleSubmitSearchBar(e, props.listOfDrinks, props.setListOfDrinks, props.getAllDrinks, props.setHasSearchResult)}>
             <input onChange={(e) => handleChangeSearchBar(e, setSearchValue)} value={searchValue} placeholder="Search..." type="text"/>
-            <div className="form-buttons">
+            <div className="form-buttons" style={{width: "30%"}}>
                 <button className="green-submit-button">Search</button>
                 <button className="white-button" type="button" onClick={() => handleResetSearch(props.getAllDrinks, setSearchValue)}>Reset</button>
             </div>
@@ -63,21 +62,15 @@ function SearchBar(props){
     )
 }
 
-
 function TablePage(props) {
     const [hasSearchResult, setHasSearchResult] = React.useState(true)
 
     return (
         <div className="TablePage">
             <SearchBar setHasSearchResult={setHasSearchResult} getAllDrinks={props.getAllDrinks} listOfDrinks={props.listOfDrinks} setListOfDrinks={props.setListOfDrinks}></SearchBar>
-            {/* <TableFilter listOfDrinks={props.listOfDrinks} setListOfDrinks={props.setListOfDrinks}></TableFilter> */}
-            {   hasSearchResult &&
-                <Table removeDrink={props.removeDrink} listOfDrinks={props.listOfDrinks} setListOfDrinks={props.setListOfDrinks}></Table>
-            }
-            {   !hasSearchResult &&
-                <p>
-                    No search results...
-                </p>
+            {   hasSearchResult 
+                ? <Table removeDrink={props.removeDrink} listOfDrinks={props.listOfDrinks} setListOfDrinks={props.setListOfDrinks}></Table>
+                : <p> No search results... </p>
             }
         </div>
     );
