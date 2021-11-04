@@ -28,6 +28,15 @@ function HomePage() {
             for(let drink of JSON.parse(xhr.responseText)){
                 newDrinksList.push(new DrinkClass(drink))
             }
+            newDrinksList.sort((drinkA, drinkB) => {
+                if (drinkA.garyScore < drinkB.garyScore) {
+                    return 1;
+                }
+                if (drinkA.garyScore > drinkB.garyScore) {
+                    return -1;
+                }
+                return 0;
+            })
             setListOfDrinks(newDrinksList)
         })
         xhr.open('GET','http://localhost:5000/drink')

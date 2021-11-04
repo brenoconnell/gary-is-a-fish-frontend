@@ -5,7 +5,6 @@ import './../../App.css';
 // import TableFilter from './TableFilter';
 
 function handleChangeSearchBar(event, setSearchValue) {
-    // console.log(event.target.value)
     setSearchValue(event.target.value)
 }
 
