@@ -22,6 +22,7 @@ function HomePage() {
     }
 
     const getAllDrinks = () => {
+        const sortProp = "garyScore"
         let xhr = new XMLHttpRequest()
         xhr.addEventListener('load', () => {
             let newDrinksList = []
@@ -29,10 +30,10 @@ function HomePage() {
                 newDrinksList.push(new DrinkClass(drink))
             }
             newDrinksList.sort((drinkA, drinkB) => {
-                if (drinkA.garyScore < drinkB.garyScore) {
+                if (drinkA[sortProp] < drinkB[sortProp]) {
                     return 1;
                 }
-                if (drinkA.garyScore > drinkB.garyScore) {
+                if (drinkA[sortProp] > drinkB[sortProp]) {
                     return -1;
                 }
                 return 0;
