@@ -139,7 +139,7 @@ class NewDrinkPage extends React.Component {
                 </div>
                 <div className="form-row">
                     <div className="form-field">
-                        <label htmlFor="shopInput"><b>Shop Namw</b></label>
+                        <label htmlFor="shopInput"><b>Shop Name</b></label>
                         <input placeholder="Tesco, Circle K..." name="shopInput" type='text' onChange={(event) => this.myChangeHandler(event, "shop")}/>
                     </div>
                     <div className="form-field">
