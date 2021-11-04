@@ -13,22 +13,43 @@ class NewDrinkPage extends React.Component {
 
         this.allBevTypes = [...allBevTypes.bevTypes].sort((a,b) => a > b ? 1 : -1)
 
-        this.state = {
-            brand: "",
-            brandBeverageName: "",
-            beverageType: this.allBevTypes[0],
-            price: "",
-            volume: 0,
-            multipack: false,
-            numInMultipack: 0,
-            alcoholContent: 0,
-            shop: "",
-            shopLocation: "",
-            shopCountry: "",
-            inputTime: "",
-            id: "",
-            currency: "EUR"
+        if(props.newDrink) {
+            this.state = {
+                brand: "",
+                brandBeverageName: "",
+                beverageType: this.allBevTypes[0],
+                price: "",
+                volume: 0,
+                multipack: false,
+                numInMultipack: 0,
+                alcoholContent: 0,
+                shop: "",
+                shopLocation: "",
+                shopCountry: "",
+                inputTime: "",
+                id: "",
+                currency: "EUR"
+            }
         }
+        else {
+            this.state = {
+                brand: props.drink.brand,
+                brandBeverageName: props.drink.brandBeverageName,
+                beverageType: props.drink.beverageType,
+                price: props.drink.price,
+                volume: props.drink.volume,
+                multipack: props.drink.multipack,
+                numInMultipack: props.drink.numInMultipack,
+                alcoholContent: props.drink.alcoholContent,
+                shop: props.drink.shop,
+                shopLocation: props.drink.shopLocation,
+                shopCountry: props.drink.shopCountry,
+                inputTime: props.drink.inputTime,
+                id: props.drink.id,
+                currency: props.drink.currency
+            }
+        }
+
     }
 
     myChangeHandler(event, myKey){

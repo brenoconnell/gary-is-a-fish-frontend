@@ -44,7 +44,7 @@ function HomePage() {
                     <TablePage removeDrink={removeDrink} listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></TablePage> 
                 </div>
                 <div label="Submit New Drink">
-                    <NewDrinkPage listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></NewDrinkPage>
+                    <NewDrinkPage newDrink={true} listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></NewDrinkPage>
                 </div>
             </Tabs> 
         </div>

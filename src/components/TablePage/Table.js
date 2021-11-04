@@ -1,6 +1,7 @@
 import React from 'react';
 import './Table.css';
 import DrinkItem from './DrinkItem';
+import NewDrinkPage from '../NewDrinkPage/NewDrinkPage';
 
 function removeDrink(drinkId, removeDrink) {
     sendRemoveRequest(drinkId)
@@ -66,6 +67,15 @@ function Table(props) {
         setListOfDrinks(newList)
     }
 
+    const onClickDrinkItem = (drink) => {
+        console.log("openDrink")
+        console.log(drink)
+
+        // Open new drink dialog here
+        // return(
+        //     <NewDrinkPage drink={drink} newDrink={false} listOfDrinks={props.listOfDrinks} setListOfDrinks={props.setListOfDrinks}></NewDrinkPage>
+        // )
+    }
 
     // Causes too many rerenders using setListOfDrinks
     // sortByType("garyScore", props.listOfDrinks, props.setListOfDrinks)
@@ -78,35 +88,35 @@ function Table(props) {
                         <div onClick={() => sortByType("brand", props.listOfDrinks, props.setListOfDrinks)} 
                             className="drinkCategory"><b>Brand</b>
                         </div>
-                        <div onClick={() => sortByType("garyScore", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("garyScore", props.listOfDrinks, props.setListOfDrinks)} 
                             className="drinkCategory"><b>Gary Score (ml alc./€)</b>
                         </div>
-                        <div onClick={() => sortByType("price", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("price", props.listOfDrinks, props.setListOfDrinks)} 
                             className="drinkCategory"><b>Price</b>
                         </div>
-                        <div onClick={() => sortByType("beverageType", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("beverageType", props.listOfDrinks, props.setListOfDrinks)} 
                             className="drinkCategory"><b>Beverage Type</b>
                         </div>
-                        <div onClick={() => sortByType("numInMultipack", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("numInMultipack", props.listOfDrinks, props.setListOfDrinks)} 
                             className="drinkCategory"><b># in pack</b>
                         </div>
-                        <div onClick={() => sortByType("volume", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("volume", props.listOfDrinks, props.setListOfDrinks)} 
                             className="drinkCategory"><b>Volume (ml)</b>
                         </div>
-                        <div onClick={() => sortByType("alcoholContent", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("alcoholContent", props.listOfDrinks, props.setListOfDrinks)} 
                             className="drinkCategory"><b>Alcohol % </b>
                         </div>
-                        <div onClick={() => sortByType("shop", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("shop", props.listOfDrinks, props.setListOfDrinks)} 
                             className="drinkCategory"><b>Shop</b>
                         </div>
-                        <div onClick={() => sortByType("shopCountry", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("shopCountry", props.listOfDrinks, props.setListOfDrinks)} 
                             className="drinkCategory"><b>Country</b>
                         </div>
                     </div>
                 </li>
                 {props.listOfDrinks.map((drink) => {
                     return (
-                        <li key={drink.id}> 
+                        <li onClick={() => onClickDrinkItem(drink)} key={drink.id}> 
                             <DrinkItem myDrink={drink}></DrinkItem> 
                             {
                                 removeDrinkAllowed &&
