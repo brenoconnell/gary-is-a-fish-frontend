@@ -2,30 +2,26 @@ import React from 'react';
 import './Table.css';
 import DrinkItem from './DrinkItem';
 
-function sortByType(sortType, listOfDrinks, setListOfDrinks, reverseSorted, setReverseSorted){
+function removeDrink(drinkId, removeDrink) {
+    sendRemoveRequest(drinkId)
+    removeDrink(drinkId)
+}
 
-    let reverseSort = reverseSorted[sortType]
-    let newList = []
+function sendRemoveRequest(drinkId){
+    let xhr = new XMLHttpRequest()
+    xhr.addEventListener('load', () => {
+        console.log(xhr.responseText)
+    })
+    xhr.open('DELETE','http://localhost:5000/drink/' + drinkId)
+    xhr.send()   
+}
 
-    if(!reverseSort){
-        newList = [...listOfDrinks].sort((drinkA, drinkB) => {
-            if(drinkA[sortType] > drinkB[sortType]) return 1
-            else if(drinkA[sortType] === drinkB[sortType]) return 0
-            else return -1
-        })
-        reverseSorted[sortType] = !reverseSorted[sortType]
-        setReverseSorted(reverseSorted)
-    }
-    else{
-        newList = [...listOfDrinks].sort((drinkA, drinkB) => {
-            if(drinkA[sortType] < drinkB[sortType]) return 1
-            else if(drinkA[sortType] === drinkB[sortType]) return 0
-            else return -1
-        })
-        reverseSorted[sortType] = !reverseSorted[sortType]
-        setReverseSorted(reverseSorted)
-    }
-    setListOfDrinks(newList)
+function RemoveDrinkButton(props) {
+
+    return (
+        <button onClick={()=>removeDrink(props.myDrinkId, props.removeDrink)}>REMOVE</button>
+    )
+
 }
 
 function Table(props) {
@@ -43,13 +39,43 @@ function Table(props) {
     }
 
     const [reverseSorted, setReverseSorted] = React.useState(initReverseSorted)
+    const [removeDrinkAllowed, setRemoveDrinkAllowed] = React.useState(false)
+
+    const sortByType = (sortType, listOfDrinks, setListOfDrinks) => {
+        let reverseSort = reverseSorted[sortType]
+        let newList = []
+    
+        if(!reverseSort){
+            newList = [...listOfDrinks].sort((drinkA, drinkB) => {
+                if(drinkA[sortType] > drinkB[sortType]) return 1
+                else if(drinkA[sortType] === drinkB[sortType]) return 0
+                else return -1
+            })
+            reverseSorted[sortType] = !reverseSorted[sortType]
+            setReverseSorted(reverseSorted)
+        }
+        else{
+            newList = [...listOfDrinks].sort((drinkA, drinkB) => {
+                if(drinkA[sortType] < drinkB[sortType]) return 1
+                else if(drinkA[sortType] === drinkB[sortType]) return 0
+                else return -1
+            })
+            reverseSorted[sortType] = !reverseSorted[sortType]
+            setReverseSorted(reverseSorted)
+        }
+        setListOfDrinks(newList)
+    }
+
+
+    // Causes too many rerenders using setListOfDrinks
+    // sortByType("garyScore", props.listOfDrinks, props.setListOfDrinks)
 
     return (
         <div className="Table">
             <ul className="myList">
                 <li key="header">
                     <div className="tableHeader">
-                        <div onClick={() => sortByType("brand", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
+                        <div onClick={() => sortByType("brand", props.listOfDrinks, props.setListOfDrinks)} 
                             className="drinkCategory"><b>Brand</b>
                         </div>
                         <div onClick={() => sortByType("garyScore", props.listOfDrinks, props.setListOfDrinks, reverseSorted, setReverseSorted)} 
@@ -82,6 +108,10 @@ function Table(props) {
                     return (
                         <li key={drink.id}> 
                             <DrinkItem myDrink={drink}></DrinkItem> 
+                            {
+                                removeDrinkAllowed &&
+                                <RemoveDrinkButton removeDrink={props.removeDrink} myDrinkId={drink.id}></RemoveDrinkButton>
+                            }  
                         </li>
                     )
                 })}

@@ -44,16 +44,6 @@ function CountryFlag(props){
     return <div className="drinkCategory"><img src={src} alt={props.countryName}></img></div>
 }
 
-function testRemove(drink){
-    let body = {"drinkID": drink.id}
-    let xhr = new XMLHttpRequest()
-    xhr.addEventListener('load', () => {
-        console.log(xhr.responseText)
-    })
-    xhr.open('POST','http://localhost:5000/removeDrink')
-    xhr.send(JSON.stringify(body))   
-}
-
 function DrinkItem(props) {
     let myDrink = props.myDrink;
     return (
@@ -67,9 +57,6 @@ function DrinkItem(props) {
             <div className="drinkCategory">{myDrink.alcoholContent}</div>
             <div className="drinkCategory">{myDrink.shop}, {myDrink.shopLocation}</div>
             <CountryFlag countryName={myDrink.shopCountry}></CountryFlag>
-            <div className="drinkButtons">
-                <button onClick={()=>testRemove(myDrink)}>BIN</button>
-            </div>
         </div>
     );
 }

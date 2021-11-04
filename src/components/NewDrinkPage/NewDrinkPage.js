@@ -13,7 +13,6 @@ class NewDrinkPage extends React.Component {
 
         this.allBevTypes = [...allBevTypes.bevTypes].sort((a,b) => a > b ? 1 : -1)
 
-        
         this.state = {
             brand: "",
             brandBeverageName: "",
@@ -51,7 +50,7 @@ class NewDrinkPage extends React.Component {
         xhr.addEventListener('load', () => {
             console.log(xhr.responseText)
         })
-        xhr.open('POST','http://localhost:5000/postNewDrink')
+        xhr.open('POST','http://localhost:5000/drink')
         xhr.send(JSON.stringify(drink))
     }
 

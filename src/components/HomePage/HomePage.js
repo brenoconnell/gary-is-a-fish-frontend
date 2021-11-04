@@ -14,6 +14,13 @@ function HomePage() {
     const initialList = []
     const [listOfDrinks, setListOfDrinks] = React.useState(initialList);
 
+    const removeDrink = (drinkId) => {
+        let newList = listOfDrinks.filter((drink) => {
+            return drink.id !== drinkId
+        })
+        setListOfDrinks(newList)
+    }
+
     React.useEffect(() => {
         let xhr = new XMLHttpRequest()
         xhr.addEventListener('load', () => {
@@ -23,7 +30,7 @@ function HomePage() {
             }
             setListOfDrinks(newDrinksList)
         })
-        xhr.open('GET','http://localhost:5000/getAllDrinks')
+        xhr.open('GET','http://localhost:5000/drink')
         xhr.send()
     }, [])
 
@@ -34,7 +41,7 @@ function HomePage() {
             </div>
             <Tabs> 
                 <div label="All Drinks"> 
-                    <TablePage listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></TablePage> 
+                    <TablePage removeDrink={removeDrink} listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></TablePage> 
                 </div>
                 <div label="Submit New Drink">
                     <NewDrinkPage listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></NewDrinkPage>
