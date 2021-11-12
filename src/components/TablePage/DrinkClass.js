@@ -34,7 +34,8 @@ class DrinkClass {
     }
 
     isValidDrink(){
-        let requiredTextFields = ["id", "brand", "brandBeverageName", "shop", "shopLocation", "shopCountry"]
+        // "id" excluded
+        let requiredTextFields = [ "brand", "brandBeverageName", "shop", "shopLocation", "shopCountry"]
         let requiredNumFields = ["price", "volume", "alcoholContent", "garyScore"]
 
         let valid = true
@@ -52,14 +53,15 @@ class DrinkClass {
                 invalidFields.push(field)
             }
         }
-        if(this.inputTime === undefined){
-            valid = false
-            invalidFields.push("inputTime")
-        }
+        // if(this.inputTime === undefined){
+        //     valid = false
+        //     invalidFields.push("inputTime")
+        // }
         if(!allBevTypes.bevTypes.includes(this.beverageType)){
             valid = false
             invalidFields.push("beverageType")
         }
+        console.log(invalidFields)
         return valid
     }
 }

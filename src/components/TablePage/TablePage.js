@@ -35,7 +35,7 @@ function searchDrinksByText(listOfDrinks, text) {
     if(text === ""){
         return undefined
     }
-    let searchedList = listOfDrinks.filter((drink) => {
+    let searchedList = [...listOfDrinks].filter((drink) => {
         let containsPhrase = false
         for(let key of Object.keys(drink)){
             if(typeof drink[key] === "string") {
@@ -50,6 +50,7 @@ function searchDrinksByText(listOfDrinks, text) {
     return searchedList
 }
 
+// eslint-disable-next-line
 function SearchBar(props){
     const [searchValue, setSearchValue] = React.useState("")
     return(
@@ -64,13 +65,14 @@ function SearchBar(props){
 }
 
 function TablePage(props) {
+    // eslint-disable-next-line
     const [hasSearchResult, setHasSearchResult] = React.useState(true)
 
     return (
         <div className="TablePage">
-            <SearchBar setHasSearchResult={setHasSearchResult} getAllDrinks={props.getAllDrinks} listOfDrinks={props.listOfDrinks} setListOfDrinks={props.setListOfDrinks}></SearchBar>
+            {/* <SearchBar setHasSearchResult={setHasSearchResult} getAllDrinks={props.getAllDrinks} listOfDrinks={props.listOfDrinks} setListOfDrinks={props.setListOfDrinks}></SearchBar> */}
             {   hasSearchResult 
-                ? <Table removeDrink={props.removeDrink} listOfDrinks={props.listOfDrinks} setListOfDrinks={props.setListOfDrinks}></Table>
+                ? <Table adminAccess={props.adminAccess} removeDrink={props.removeDrink} listOfDrinks={props.listOfDrinks} setListOfDrinks={props.setListOfDrinks}></Table>
                 : <p> No search results... </p>
             }
         </div>

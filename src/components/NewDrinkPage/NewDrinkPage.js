@@ -172,9 +172,6 @@ class NewDrinkPage extends React.Component {
                         <input disabled={!this.props.editMode} value={this.state.shopCountry} placeholder="Ireland..." name="shopCountryInput" type='text' onChange={(event) => this.myChangeHandler(event, "shopCountry")}/>
                     </div>
                 </div>
-                {/* <div className="form-buttons">
-                    <button disabled={!this.props.editMode} className="green-submit-button" type="submit">Submit</button>
-                </div> */}
                 {
                     this.props.editMode &&
                     <div className="form-buttons">

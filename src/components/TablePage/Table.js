@@ -61,9 +61,6 @@ function Table(props) {
 
     // Both of these attributes deal with possible admin features
     // eslint-disable-next-line
-    const [removeDrinkAllowed, setRemoveDrinkAllowed] = React.useState(false)
-    // eslint-disable-next-line
-    const [editMode, setEditMode] = React.useState(false)
 
     const [reverseSorted, setReverseSorted] = React.useState(initReverseSorted)
     const [open, setOpen] = React.useState(false)
@@ -126,8 +123,8 @@ function Table(props) {
                         <li onClick={() => onClickDrinkItem(drink)} key={drink.id}> 
                             <DrinkItem myDrink={drink}></DrinkItem> 
                             {
-                                removeDrinkAllowed &&
-                                <RemoveDrinkButton removeDrink={props.removeDrink} myDrink={drink}></RemoveDrinkButton>
+                                props.adminAccess &&
+                                <RemoveDrinkButton removeDrink={props.adminAccess} myDrink={drink}></RemoveDrinkButton>
                             }  
                         </li>
                     )
@@ -143,7 +140,7 @@ function Table(props) {
                         listOfDrinks={props.listOfDrinks} 
                         setListOfDrinks={props.setListOfDrinks}
                         handleClose={handleClose}
-                        editMode={editMode}/>
+                        editMode={props.adminAccess}/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
