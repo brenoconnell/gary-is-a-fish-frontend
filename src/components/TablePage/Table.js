@@ -1,11 +1,19 @@
 import React from 'react';
 import './Table.css';
 import DrinkItem from './DrinkItem';
+// eslint-disable-next-line
 import NewDrinkPage from '../NewDrinkPage/NewDrinkPage';
 
-function removeDrink(drinkId, removeDrink) {
-    sendRemoveRequest(drinkId)
-    removeDrink(drinkId)
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+
+
+function removeDrink(drink, removeDrink) {
+    sendRemoveRequest(drink.id)
+    removeDrink(drink.id)
 }
 
 function sendRemoveRequest(drinkId){
@@ -20,7 +28,7 @@ function sendRemoveRequest(drinkId){
 function RemoveDrinkButton(props) {
 
     return (
-        <button onClick={()=>removeDrink(props.myDrinkId, props.removeDrink)}>REMOVE</button>
+        <button onClick={()=>removeDrink(props.myDrink, props.removeDrink)}>REMOVE</button>
     )
 
 }
@@ -51,8 +59,28 @@ function Table(props) {
         shopCountry: "Country"
     }
 
-    const [reverseSorted, setReverseSorted] = React.useState(initReverseSorted)
+    // Both of these attributes deal with possible admin features
+    // eslint-disable-next-line
     const [removeDrinkAllowed, setRemoveDrinkAllowed] = React.useState(false)
+    // eslint-disable-next-line
+    const [editMode, setEditMode] = React.useState(false)
+
+    const [reverseSorted, setReverseSorted] = React.useState(initReverseSorted)
+    const [open, setOpen] = React.useState(false)
+    const [selectedDrink, setSelectedDrink] = React.useState({})
+
+    const handleClickOpen = () => {
+        setOpen(true)
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+    }
+
+    const onClickDrinkItem = (drink) => {
+        setSelectedDrink(drink)
+        handleClickOpen()
+    }
 
     const sortByType = (sortType, listOfDrinks, setListOfDrinks) => {
         let reverseSort = reverseSorted[sortType]
@@ -79,19 +107,6 @@ function Table(props) {
         setListOfDrinks(newList)
     }
 
-    const onClickDrinkItem = (drink) => {
-        console.log("openDrink")
-        console.log(drink)
-
-        // Open new drink dialog here
-        // return(
-        //     <NewDrinkPage drink={drink} newDrink={false} listOfDrinks={props.listOfDrinks} setListOfDrinks={props.setListOfDrinks}></NewDrinkPage>
-        // )
-    }
-
-    // Causes too many rerenders using setListOfDrinks
-    // sortByType("garyScore", props.listOfDrinks, props.setListOfDrinks)
-
     return (
         <div className="Table">
             <ul className="myList">
@@ -112,12 +127,28 @@ function Table(props) {
                             <DrinkItem myDrink={drink}></DrinkItem> 
                             {
                                 removeDrinkAllowed &&
-                                <RemoveDrinkButton removeDrink={props.removeDrink} myDrinkId={drink.id}></RemoveDrinkButton>
+                                <RemoveDrinkButton removeDrink={props.removeDrink} myDrink={drink}></RemoveDrinkButton>
                             }  
                         </li>
                     )
                 })}
             </ul>
+
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>{selectedDrink.brand}</DialogTitle>
+                <DialogContent style={{"overflow": "hidden"}}>
+                    <NewDrinkPage 
+                        drink={selectedDrink} 
+                        newDrink={false} 
+                        listOfDrinks={props.listOfDrinks} 
+                        setListOfDrinks={props.setListOfDrinks}
+                        handleClose={handleClose}
+                        editMode={editMode}/>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                </DialogActions>
+            </Dialog>
         
         </div>
     );

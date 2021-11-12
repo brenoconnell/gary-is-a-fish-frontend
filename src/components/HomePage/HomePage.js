@@ -58,7 +58,7 @@ function HomePage() {
                     <TablePage getAllDrinks={getAllDrinks} removeDrink={removeDrink} listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></TablePage> 
                 </div>
                 <div label="Submit New Drink">
-                    <NewDrinkPage newDrink={true} listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks}></NewDrinkPage>
+                    <NewDrinkPage newDrink={true} listOfDrinks={listOfDrinks} setListOfDrinks={setListOfDrinks} editMode={true}></NewDrinkPage>
                 </div>
             </Tabs> 
         </div>

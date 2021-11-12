@@ -10,7 +10,6 @@ class DrinkClass {
         this.price = parseFloat(drink.price);
         this.currency = drink.currency;
         this.volume = parseInt(drink.volume);
-        this.multipack = drink.multipack;
         this.numInMultipack = drink.numInMultipack;
         this.alcoholContent = parseFloat(drink.alcoholContent);
         this.shop = drink.shop;
@@ -20,6 +19,9 @@ class DrinkClass {
         this.itemImageRef = drink.itemImageRef;
         this.garyScore = this.calcGaryScore();
         this.inputTime = new Date(drink.inputTime);
+
+        if(this.numInMultipack > 1) this.multipack = true
+        else this.multipack = false
     }
 
     calcGaryScore(){

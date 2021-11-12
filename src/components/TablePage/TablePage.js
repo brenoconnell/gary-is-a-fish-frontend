@@ -25,8 +25,9 @@ function handleSubmitSearchBar(event, listOfDrinks, setListOfDrinks, getAllDrink
     }, 500)
 }
 
-function handleResetSearch(getAllDrinks, setSearchValue) {
+function handleResetSearch(getAllDrinks, setSearchValue, setHasSearchResult) {
     setSearchValue("")
+    setHasSearchResult(true)
     getAllDrinks()
 }
 
@@ -56,7 +57,7 @@ function SearchBar(props){
             <input onChange={(e) => handleChangeSearchBar(e, setSearchValue)} value={searchValue} placeholder="Search..." type="text"/>
             <div className="form-buttons" style={{width: "30%"}}>
                 <button className="green-submit-button">Search</button>
-                <button className="white-button" type="button" onClick={() => handleResetSearch(props.getAllDrinks, setSearchValue)}>Reset</button>
+                <button className="white-button" type="button" onClick={() => handleResetSearch(props.getAllDrinks, setSearchValue, props.setHasSearchResult)}>Reset</button>
             </div>
         </form>
     )
