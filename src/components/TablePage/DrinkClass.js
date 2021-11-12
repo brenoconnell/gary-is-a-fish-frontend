@@ -10,7 +10,6 @@ class DrinkClass {
         this.price = parseFloat(drink.price);
         this.currency = drink.currency;
         this.volume = parseInt(drink.volume);
-        this.multipack = drink.multipack;
         this.numInMultipack = drink.numInMultipack;
         this.alcoholContent = parseFloat(drink.alcoholContent);
         this.shop = drink.shop;
@@ -20,6 +19,9 @@ class DrinkClass {
         this.itemImageRef = drink.itemImageRef;
         this.garyScore = this.calcGaryScore();
         this.inputTime = new Date(drink.inputTime);
+
+        if(this.numInMultipack > 1) this.multipack = true
+        else this.multipack = false
     }
 
     calcGaryScore(){
@@ -32,7 +34,8 @@ class DrinkClass {
     }
 
     isValidDrink(){
-        let requiredTextFields = ["id", "brand", "brandBeverageName", "shop", "shopLocation", "shopCountry"]
+        // "id" excluded
+        let requiredTextFields = [ "brand", "brandBeverageName", "shop", "shopLocation", "shopCountry"]
         let requiredNumFields = ["price", "volume", "alcoholContent", "garyScore"]
 
         let valid = true
@@ -50,14 +53,15 @@ class DrinkClass {
                 invalidFields.push(field)
             }
         }
-        if(this.inputTime === undefined){
-            valid = false
-            invalidFields.push("inputTime")
-        }
+        // if(this.inputTime === undefined){
+        //     valid = false
+        //     invalidFields.push("inputTime")
+        // }
         if(!allBevTypes.bevTypes.includes(this.beverageType)){
             valid = false
             invalidFields.push("beverageType")
         }
+        console.log(invalidFields)
         return valid
     }
 }
